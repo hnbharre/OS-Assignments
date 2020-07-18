@@ -1,0 +1,143 @@
+# Two Level File Management
+# Harshal Bharre Roll: 022
+echo "\nAre you want, go to the home directory (Y/N)?"
+read ch
+if [ $ch = "Y" ]
+then
+cd ~
+echo "You are in home directory"
+
+else
+echo "Enter the Directory Name of choice"
+read cdir
+#cd /home/user/$cdir
+cd ~/$cdir
+fi
+
+i="y"
+while [ $i = "y" ]
+do
+echo "\nMenu"
+echo "==========================="
+echo "1. Create Directory"
+echo "2. Create File"
+echo "3. Search Directory"
+echo "4. Search File"
+echo "5. Delete Directory including Contents"
+echo "6. Delete File"
+echo "7. Rename File"
+echo "8. View Directory Contents"
+echo "9. Change Directory"
+echo "10. Exit"
+echo "==========================="
+echo "Enter Your Choice"
+read choice
+
+case $choice in
+1)
+echo "Enter Directory Name: "
+read dname
+if [ -d $dname ]
+then
+echo "Directory already exits"
+
+else
+mkdir $dname;
+cd $dname;
+echo "Directory Successfully Created"
+fi;;
+
+2)
+echo "Enter File Name: "
+read fname
+if [ -f $fname ]
+then
+echo "File already exits"
+
+else
+touch $fname
+echo "File Successfully Created"
+fi;;
+
+3)
+echo "Enter Directory Name: "
+read sdname
+if [ -d $sdname ]
+then
+echo "Directory Exists"
+
+else
+echo "No Such Directory Exists"
+fi;;
+
+4)
+echo "Enter File Name: "
+read sname
+if [ -f $sname ]
+then
+echo "File Exists"
+
+else
+echo "No Such File Exists"
+fi;;
+
+5)
+echo "Enter the Directory to be Deleted: "
+read ddname1
+if [ -d $ddname1 ]
+then
+rm -rf letters $ddname1
+echo "Directory Sucessfully Deleted"
+
+else
+echo "No such Directory Exists"
+fi;;
+
+
+6)
+echo "Enter the File to be Deleted: "
+read dname1
+if [ -f $dname1 ]
+then
+rm $dname1
+echo "File Sucessfully Deleted"
+
+else
+echo "No such File Exists"
+fi;;
+
+7)
+echo "Enter the File Name to be renamed: "
+read old_fname
+echo "Enter the New File Name: "
+read new_fname
+mv $old_fname $new_fname ;;
+
+8)
+echo "Present Working Directory is:"
+pwd;
+echo "\nFiles in Directory are:"
+ls;
+;;
+
+9)
+echo "Are you want, go to the home directory (Y/N)?"
+read ch
+if [ $ch = "Y" ]
+then
+cd ~
+echo "You are in home directory"
+
+else
+echo "Enter the Directory choice"
+read cdir
+#cd /home/user/$cdir
+cd ~/$cdir
+fi;;
+
+10)
+i="n";;
+
+esac
+
+done
